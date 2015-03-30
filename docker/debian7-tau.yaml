@@ -7,7 +7,7 @@
 #==============================================================================
 
 ---
-extend: default/docker/debian7.yaml
+extend: debian7.yaml
 
 global:
     # You can see the base template `default/chroot/debian7.yaml` to know the
