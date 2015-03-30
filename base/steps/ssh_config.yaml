@@ -1,0 +1,7 @@
+- host_key:
+  - write_in: 
+    - /root/.ssh/config
+    - |
+      Host *
+      StrictHostKeyChecking no
+      HashKnownHosts no

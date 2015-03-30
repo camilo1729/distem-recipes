@@ -1,0 +1,28 @@
+#==============================================================================
+# vim: softtabstop=2 shiftwidth=2 expandtab fenc=utf-8 cc=81 tw=80
+#==============================================================================
+#
+# DESCRIPTION: Debian wheezy plus TAU for MPI profiling
+#
+#==============================================================================
+
+---
+extend: default/docker/debian7.yaml
+
+global:
+    # You can see the base template `default/chroot/debian7.yaml` to know the
+    # variables that you can override
+
+bootstrap:
+  - "@base"
+
+setup:
+  - "@base"
+  - install_software:
+    - packages: >
+       g++ make taktuk openssh-server openmpi-bin openmpi-common openmpi-dev libc6-dev-i386
+  - ssh_config
+  - tau_install
+
+export:
+  - "@base"
