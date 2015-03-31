@@ -10,8 +10,6 @@
 # as explain in: https://www.grid5000.fr/mediawiki/index.php/SSH_quick_configuration
 # In order for this recipe to work, please change the g5k username by yours.
 ---
-# Loads some helpful aliases
-aliases: defaults.yaml
 # By default checkpoint is disable
 extend: ../base/debian.yaml
 #== Global variables use by Kameleon engine and the steps
