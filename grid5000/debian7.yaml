@@ -13,6 +13,7 @@
 # Loads some helpful aliases
 aliases: defaults.yaml
 # By default checkpoint is disable
+extend: ../base/debian.yaml
 #== Global variables use by Kameleon engine and the steps
 global:
   ## User varibales : used by the recipe
@@ -74,21 +75,7 @@ setup:
   - install_software:
     - packages: >
         debian-keyring zip unzip rsync sudo less vim bash-completion
-  # Configuration
-  - configure_system:
-    - locales: POSIX C en_US fr_FR de_DE
-    - lang: en_US.UTF-8
-    - timezone: UTC
-  - configure_keyboard:
-    - layout: "us,fr,de"
-  - configure_network:
-    - hostname: kameleon-$$distrib
-  - create_group:
-    - name: admin
-  - create_user:
-    - name: $$user_name
-    - groups: sudo admin
-    - password: $$user_password
+
 
 #== Export the generated appliance in the format of your choice
 export:
