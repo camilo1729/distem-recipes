@@ -65,6 +65,10 @@ bootstrap:
 # possible...)
 setup:
   # Install
+  - exporting_g5k_vars:
+    - proxy:
+          - exec_in: export http_proxy="http://proxy:3128"
+          - exec_in: export https_proxy="http://proxy:3128"
   - configure_apt:
     - enable_contrib_repo: true
     - enable_nonfree_repo: true
