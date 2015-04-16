@@ -44,7 +44,7 @@ bootstrap:
     - release: $$release
     - arch: $$arch
     - repository: http://ftp.debian.org/debian/
-    - variant: minbase  # default|minbase|buildd|fakechroot|scratchbox
+    - variant: default  # default|minbase|buildd|fakechroot|scratchbox
 
 # Install and configuration steps
 # WARNING: this part should be independante from the out context (whenever
@@ -59,10 +59,21 @@ setup:
     - dist_upgrade: true
   - install_software:
     - packages: >
-        debian-keyring $$setup_packages lxc
+        debian-keyring $$setup_packages
+  - configure_kernel
+  - install_bootloader
   # Configuration
   - configure_system:
     - locales: POSIX C en_US fr_FR de_DE
     - lang: en_US.UTF-8
     - timezone: UTC
+  - configure_keyboard:
+    - layout: "us,fr,de"
   - configure_network
+  - kameleon_customization
+  - create_group:
+    - name: admin
+  - create_user:
+    - name: $$user_name
+    - groups: sudo admin
+    - password: $$user_password

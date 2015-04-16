@@ -1,0 +1,19 @@
+- mpi_version: "1.8"
+- mpi_path: "/usr/local/"
+
+- get_mpi:
+  - exec_local: |
+       cd /tmp/
+       wget -q http://www.open-mpi.org/software/ompi/v$$mpi_version/downloads/openmpi-1.8.4.tar.gz
+  - local2in:
+      - /tmp/openmpi-1.8.4.tar.gz
+      - /tmp/openmpi-1.8.4.tar.gz
+- mpi_install:
+  - exec_in: |
+       cd /tmp/
+       tar -xf openmpi-1.8.4.tar.gz
+       ./configure --prefix=$$mpi_path
+       make all install
+
+- cleaning:
+  - exec_in: rm -rf /tmp/openmpi-*

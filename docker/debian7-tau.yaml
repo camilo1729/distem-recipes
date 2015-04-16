@@ -12,7 +12,7 @@ extend: debian7.yaml
 global:
     # You can see the base template `default/chroot/debian7.yaml` to know the
     # variables that you can override
-
+  mpi_path: "/usr/local/"
 bootstrap:
   - "@base"
 
@@ -20,9 +20,10 @@ setup:
   - "@base"
   - install_software:
     - packages: >
-       g++ make taktuk openssh-server openmpi-bin openmpi-common openmpi-dev libc6-dev-i386
+       g++ make taktuk openssh-server libc6-dev-i386
        build-essential gfortran fort77
   - ssh_config
+  - mpi_install
   - tau_install
 
 export:

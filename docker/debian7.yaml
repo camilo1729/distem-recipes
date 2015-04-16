@@ -58,7 +58,22 @@ bootstrap:
 # WARNING: this part should be independante from the out context (whenever
 # possible...)
 setup:
-  - "@base"
+  - configure_apt:
+    - repository: $$apt_repository
+    - enable_contrib_repo: $$apt_enable_contrib
+    - enable_nonfree_repo: $$apt_enable_nonfree
+  - upgrade_system:
+    - dist_upgrade: true
+  - install_software:
+    - packages: >
+        debian-keyring $$setup_packages lxc
+  # Configuration
+  - configure_system:
+    - locales: POSIX C en_US fr_FR de_DE
+    - lang: en_US.UTF-8
+    - timezone: UTC
+  - configure_network
+  - configure_container
 
 #== Export the generated appliance in the format of your choice
 export:
