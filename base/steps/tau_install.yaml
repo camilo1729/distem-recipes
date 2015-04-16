@@ -1,4 +1,4 @@
-- tau_version: "2.22.2"
+- tau_version: "2.23.1"
 - pdt_version: "3.19"
 - mpi_path: "/usr/lib/openmpi/"
 - get_tau:
