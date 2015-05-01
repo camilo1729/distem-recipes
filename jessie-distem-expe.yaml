@@ -1,0 +1,35 @@
+#==============================================================================
+# vim: softtabstop=2 shiftwidth=2 expandtab fenc=utf-8 cc=81 tw=80
+#=================   =============================================================
+#
+# DESCRIPTION: <MY RECIPE DESCRIPTION>
+#
+#==============================================================================
+
+---
+extend: grid5000/debian8.yaml
+
+
+global:
+    # You can see the base template `default/virtualbox/debian7.yaml` to know the
+    # variables that you can override
+  g5k_user: cruizsanabria
+  g5k_site: rennes
+  walltime: "03:00:00"
+  mpi_path: "/usr/lib/openmpi/"
+bootstrap:
+  - "@base"
+
+setup:
+  - "@base"
+  - install_software:
+    - packages: >
+       g++ make taktuk openssh-server libc6-dev-i386
+       openmpi-bin openmpi-common libopenmpi-dev
+       emacs libncurses5-dev kernel-package
+       gfortran fort77
+  - tau_install
+  - ssh_config
+  - install_kernel
+export:
+  - "@base"

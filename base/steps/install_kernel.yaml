@@ -1,0 +1,22 @@
+- kernel_depo: "http://public.rennes.grid5000.fr/~cruizsanabria/"
+
+- get_debian_packege_from_g5k:
+  - exec_in: |
+       cd /tmp/
+       wget -q $$kernel_depo/linux-image-3.2.0-4-amd64_3.2.68-1+deb7u1_amd64.deb
+       wget -q $$kernel_depo/linux-image-3.16.0_3.16.0-10.00.Custom_amd64.deb
+       wget -q $$kernel_depo/linux-image-4.0.0_4.0.0-10.00.Custom_amd64.deb
+
+
+- install_kernel:
+  - exec_in: |
+       cd /tmp/
+       dpkg -i linux-image-3.2.0-4-amd64_3.2.68-1+deb7u1_amd64.deb
+       dpkg -i linux-image-3.16.0_3.16.0-10.00.Custom_amd64.deb
+       dpkg -i linux-image-4.0.0_4.0.0-10.00.Custom_amd64.deb
+
+- driveer_megaraid_sas:
+  - exec_in: |
+       cd /tmp/
+       wget http://git.grid5000.fr/drivers/megaraid_sas-06.806.08.00-1_Debian7.0.amd64.deb
+       dpkg -i megaraid_sas-06.806.08.00-1_Debian7.0.amd64.deb

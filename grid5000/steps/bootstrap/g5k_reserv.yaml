@@ -29,7 +29,7 @@
   - exec_out : echo "Walltime is $$walltime"
   - exec_out : |
       oarstat | grep -q "$$kameleon_recipe_name" \
-          || oarsub -n "$$kameleon_recipe_name" -l walltime=$$walltime -t deploy "sleep 100000"
+          || oarsub -q "testing" -p "cluster='paravance'" -n "$$kameleon_recipe_name" -l walltime=$$walltime -t deploy "sleep 100000"
   - exec_out : |
       echo -n "Waiting for the reservation to be ready"
       until $(oarstat -fu $$g5k_user | grep -q "state = Running")
@@ -42,7 +42,7 @@
   - exec_out: echo "Getting the machine name"
   - exec_out: export machine=`oarstat -fu $$g5k_user | grep assigned_hostnames | cut -d ' ' -f 7`
   - exec_out: echo "Deploying environment $$kenv on $machine"
-  - exec_out: kadeploy3 -e $$kenv -m $machine -k
+  - exec_out: kadeploy3 -a $$kenv -m $machine -k
   - pipe:
       - exec_out: echo $machine
       - exec_local: cat >$$kameleon_cwd/g5k_machine
