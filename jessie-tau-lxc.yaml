@@ -7,12 +7,12 @@
 #==============================================================================
 
 ---
-extend: debian7.yaml
+extend: debian8.yaml
 
 global:
     # You can see the base template `default/chroot/debian7.yaml` to know the
     # variables that you can override
-  mpi_path: "/usr/local/"
+  mpi_path: "/usr/lib/openmpi"
 bootstrap:
   - "@base"
 
@@ -21,9 +21,9 @@ setup:
   - install_software:
     - packages: >
        g++ make taktuk openssh-server libc6-dev-i386
+       openmpi-bin openmpi-common libopenmpi-dev
        build-essential gfortran fort77
   - ssh_config
-  - mpi_install
   - tau_install
 
 export:
