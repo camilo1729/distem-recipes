@@ -26,3 +26,23 @@
   - exec_in: /usr/sbin/update-rc.d -f umountfs remove
   - exec_in: /usr/sbin/update-rc.d -f hwclock.sh remove
   - exec_in: /usr/sbin/update-rc.d -f hwclockfirst.sh remove
+
+- configure_systemd:
+
+  - exec_in: |
+      if [ -f /lib/systemd/system/getty\@.service ]; then
+         sed -e 's/^ConditionPathExists=/# ConditionPathExists=/' \
+         -e 's/After=dev-%i.device/After=/' \
+         < /lib/systemd/system/getty\@.service \
+         > /etc/systemd/system/getty\@.service
+      fi
+
+  - exec_in: mkdir -p /{lib,etc}/systemd/system
+  - exec_in: mkdir -p /etc/systemd/system/getty.target.wants
+  - exec_in: ln -s /dev/null /etc/systemd/system/udev.service
+  - exec_in: ln -s /dev/null /etc/systemd/system/systemd-udevd.service
+  - exec_in: ln -s /lib/systemd/system/multi-user.target /etc/systemd/system/default.target
+  - exec_in: ln -s /lib/systemd/system/halt.target /etc/systemd/system/sigpwr.target
+  - exec_in |
+      ( cd /etc/systemd/system/getty.target.wants
+      for i in 1 2 3 4 ; do ln -sf ../getty\@.service getty@tty${i}.service; done )
