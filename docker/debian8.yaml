@@ -12,7 +12,7 @@ extend: ../base/debian.yaml
 #== Global variables use by Kameleon engine and the steps
 global:
   # Distribution
-  release: wheezy
+  release: jeesie
 
   ## Docker options
   docker_dns: 208.67.222.222
