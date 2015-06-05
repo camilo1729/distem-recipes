@@ -7,6 +7,13 @@ The recipes allows to build imager for LXC and for bare metal.
 
 ## How to use them?
 
+First, clone and enter the repository.
+
+```bash
+	$ git clone https://github.com/camilo1729/distem-recipes.git
+	$ cd distem-recipes/
+```
+
 For building an image for Kadeploy using Grid'5000
 
 ```bash
