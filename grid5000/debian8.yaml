@@ -59,6 +59,10 @@ bootstrap:
 setup:
   # Install
   #  - "@base"
+  - exporting_g5k_vars:
+    - proxy:
+          - exec_in: export http_proxy="http://proxy:3128"
+          - exec_in: export https_proxy="http://proxy:3128"
   - configure_apt:
     - repository: $$apt_repository
     - enable_contrib_repo: $$apt_enable_contrib

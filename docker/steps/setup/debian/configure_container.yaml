@@ -43,6 +43,6 @@
   - exec_in: ln -s /dev/null /etc/systemd/system/systemd-udevd.service
   - exec_in: ln -s /lib/systemd/system/multi-user.target /etc/systemd/system/default.target
   - exec_in: ln -s /lib/systemd/system/halt.target /etc/systemd/system/sigpwr.target
-  - exec_in |
+  - exec_in: |
       ( cd /etc/systemd/system/getty.target.wants
       for i in 1 2 3 4 ; do ln -sf ../getty\@.service getty@tty${i}.service; done )

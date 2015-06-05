@@ -30,6 +30,15 @@ setup:
        gfortran fort77
   - tau_install
   - ssh_config
+  - compile_kernel:
+      - kernel_version: "3.2"
+      - big_release: "3"
+  - compile_kernel:
+      - kernel_version: "3.16"
+      - big_release: "3"
+  - compile_kernel:
+      - kernel_version: "4.0"
+      - big_release: "4"
   - install_kernel
 export:
   - "@base"
