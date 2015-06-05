@@ -14,6 +14,8 @@ First, clone and enter the repository.
 	$ cd distem-recipes/
 ```
 
+Please change the username in the recipe `jessie-distem-expe.yaml`
+before using it. You have to put a valid Grid'5000 user account.
 For building an image for Kadeploy using Grid'5000
 
 ```bash
