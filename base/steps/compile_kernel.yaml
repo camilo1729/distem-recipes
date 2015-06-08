@@ -1,0 +1,24 @@
+# This steps compiles the different kernels and generates debian packages
+- kernel_version: "3.2"
+- big_release: "3"
+# just to be compatible with kernel.org
+- get_kernel_sources:
+  - exec_in: |
+       cd /tmp/
+       wget -q https://www.kernel.org/pub/linux/kernel/v$$big_release.x/linux-$$kernel_version.tar.gz
+
+- untaring_kernels:
+  - exec_in: |
+       cd /tmp/
+       tar xf linux-$$kernel_version.tar.gz
+
+- compile_kernels:
+    - local2in:
+        - $$kameleon_data_dir/config-$$kernel_version.0
+        - /tmp/linux-$$kernel_version/.config
+
+    - exec_in: |
+       cd /tmp/linux-$$kernel_version/
+       make oldconfig
+       export CONCURRENCY_LEVEL=16
+       make-kpkg --initrd kernel-image kernel-headers
