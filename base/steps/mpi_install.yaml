@@ -1,29 +1,30 @@
-- mpi_version: "1.8"
+- mpi_release: "1.6"
+- mpi_version: "1.6.5"
 - mpi_path: "/usr/local/"
 
 - get_mpi:
   - exec_local: |
                 cd /tmp/
-                wget -q http://www.open-mpi.org/software/ompi/v$$mpi_version/downloads/openmpi-1.8.4.tar.gz
+                wget -q http://www.open-mpi.org/software/ompi/v$$mpi_release/downloads/openmpi-$$mpi_version.tar.gz
   - local2in:
-      - /tmp/openmpi-1.8.4.tar.gz
-      - /tmp/openmpi-1.8.4.tar.gz
+      - /tmp/openmpi-$$mpi_version.tar.gz
+      - /tmp/openmpi-$$mpi_version.tar.gz
 
 
 - mpi_install:
   - exec_in: |
              cd /tmp/
-             tar -xf openmpi-1.8.4.tar.gz
-             cd openmpi-1.8.4
+             tar -xf openmpi-$$mpi_version.tar.gz
+             cd openmpi-$$mpi_version
              ./configure --prefix=$$mpi_path
-             make all install
+             make -j 8 all install
 
 - ld_config:
   - write_in:
       - /etc/ld.so.conf.d/libmpi.conf
       - |
         # openmpi lib
-        /usr/lib/local/
+        $$mpi_path/lib/
 
 - cleaning:
   - exec_in: rm -rf /tmp/openmpi-*
