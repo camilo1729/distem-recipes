@@ -25,7 +25,6 @@ setup:
   - install_software:
     - packages: >
        g++ make taktuk openssh-server libc6-dev-i386
-       openmpi-bin openmpi-common libopenmpi-dev
        build-essential gfortran fort77
   - mpi_install
   - tau_install
