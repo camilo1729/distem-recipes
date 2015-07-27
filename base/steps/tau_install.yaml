@@ -26,7 +26,7 @@
        tar -xzf tau-$$tau_version.tar.gz
   - local2in:
         - $$kameleon_data_dir/TauFMpi.c
-        - /tmp/tau-$$tau_version/src/Profile/
+        - /tmp/tau-$$tau_version/src/Profile/TauFMpi.c
   - exec_in: |
        cd /tmp/tau-$$tau_version
        ./configure -prefix=/usr/local/tau-install -pdt=/usr/local/pdt-install/ -mpiinc=$$mpi_path/include/ -mpilib=$$mpi_path/lib/
