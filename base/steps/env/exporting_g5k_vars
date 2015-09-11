@@ -1,0 +1,4 @@
+if [ $KAMELEON_CONTEXT_NAME = "in_context" ]; then
+   export http_proxy="http://proxy:3128"
+   export https_proxy="http://proxy:3128"
+fi

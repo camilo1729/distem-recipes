@@ -47,22 +47,17 @@ global:
 
 #== Bootstrap the new system and create the 'in_context'
 #== This will consist in a G5k Deployment
+env:
+  - exporting_g5k_vars
 bootstrap:
   - g5k_reserv:
     - g5k_user: $$g5k_user
     - kenv: $$kenv
 
-
 #== Install and configuration steps
 # WARNING: this part should be independante from the out context (whenever
 # possible...)
 setup:
-  # Install
-  #  - "@base"
-  - exporting_g5k_vars:
-    - proxy:
-          - exec_in: export http_proxy="http://proxy:3128"
-          - exec_in: export https_proxy="http://proxy:3128"
   - configure_apt:
     - repository: $$apt_repository
     - enable_contrib_repo: $$apt_enable_contrib
