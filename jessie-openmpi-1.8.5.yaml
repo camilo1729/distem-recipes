@@ -1,0 +1,48 @@
+#==============================================================================
+# vim: softtabstop=2 shiftwidth=2 expandtab fenc=utf-8 cc=81 tw=80
+#=================   =============================================================
+#
+# DESCRIPTION: <MY RECIPE DESCRIPTION>
+#
+#==============================================================================
+
+---
+extend: grid5000/debian8.yaml
+
+
+global:
+    # You can see the base template `default/virtualbox/debian7.yaml` to know the
+    # variables that you can override
+  g5k_user: cruizsanabria
+  g5k_site: rennes
+  walltime: "03:00:00"
+  mpi_path: "/usr/local/"
+  mpi_release: "1.8"
+  mpi_version: "1.8.5"
+  tau_version: "2.24.1"
+
+bootstrap:
+  - "@base"
+
+setup:
+  - "@base"
+  - install_software:
+    - packages: >
+       g++ make taktuk openssh-server libc6-dev-i386
+       emacs libncurses5-dev kernel-package
+       gfortran fort77
+  - mpi_install
+  - tau_install
+  - ssh_config
+  # - compile_kernel:
+  #     - kernel_version: "3.2"
+  #     - big_release: "3"
+  - compile_kernel:
+      - kernel_version: "3.16"
+      - big_release: "3"
+  - compile_kernel:
+      - kernel_version: "4.0"
+      - big_release: "4"
+  - install_kernel
+export:
+  - "@base"
