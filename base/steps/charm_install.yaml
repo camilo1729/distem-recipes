@@ -1,0 +1,52 @@
+- charm_version: "6.6.0"
+- mpi_path: "/usr/local/"
+- build_opt: "net-linux-x86_64"
+- checkpoint: "syncft"
+- build_path: $$build_opt-$$checkpoint
+
+- get_charm:
+  - exec_local: |
+                cd /tmp/
+                wget -q http://charm.cs.illinois.edu/distrib/charm-$$charm_version.tar.gz
+  - local2in:
+      - /tmp/charm-$$charm_version.tar.gz
+      - /root/charm-$$charm_version.tar.gz
+
+- untar_charm:
+  - exec_in: |
+             cd /root/
+             tar -xf charm-$$charm_version.tar.gz
+
+- charm_compile_sync_ft:
+  - exec_in: |
+             cd /root/charm-$$charm_version
+             ./build charm++ $$build_opt syncft -O0
+
+- charm_compile_sync_mlogft:
+  - exec_in: |
+             cd /root/charm-$$charm_version
+             ./build charm++ $$build_opt mlogft -O0
+
+
+- compile_stencil3D:
+  - exec_in: |
+             make -C /root/charm-$$charm_version/$$build_path/examples/charm++/load_balancing/stencil3d/
+             make projections -C /root/charm-$$charm_version/$$build_path/examples/charm++/load_balancing/stencil3d/
+
+- compile_liveviz:
+  - exec_in: |
+             make -C /root/charm-$$charm_version/tmp/libs/ck-libs/liveViz/
+             make -C /root/charm-$$charm_version/tmp/libs/ck-libs/liveViz/
+             
+- compile_wave2d:
+  - exec_in: |
+             make -C /root/charm-$$charm_version/$$build_path/examples/charm++/wave2d/
+  
+- compile_mol2d:
+  - exec_in: |
+             make -C /root/charm-$$charm_version/$$build_path/examples/charm++/Molecular2D/
+   
+- compile_jacobi:
+  - exec_in: |
+             make -C /root/charm-$$charm_version/$$build_path/tests/charm++/jacobi3d/
+             make projections -C /root/charm-$$charm_version/$$build_path/tests/charm++/jacobi3d/
