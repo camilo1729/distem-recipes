@@ -22,9 +22,9 @@ setup:
     - packages: >
        g++ make taktuk openssh-server libc6-dev-i386
        openmpi-bin openmpi-common libopenmpi-dev
-       build-essential gfortran fort77
+       build-essential gfortran fort77 hpcc
   - ssh_config
-  - tau_install
+#  - tau_install
 
 export:
   - "@base"
