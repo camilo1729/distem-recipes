@@ -1,0 +1,28 @@
+#==============================================================================
+# vim: softtabstop=2 shiftwidth=2 expandtab fenc=utf-8 cc=81 tw=80
+#==============================================================================
+#
+# DESCRIPTION: Debian wheezy plus TAU for MPI profiling
+#
+#==============================================================================
+
+---
+extend: docker/debian8.yaml
+
+global:
+    # You can see the base template `default/chroot/debian7.yaml` to know the
+    # variables that you can override
+  mpi_path: "/usr/lib/openmpi"
+bootstrap:
+  - "@base"
+
+setup:
+  - "@base"
+  - install_software:
+    - packages: >
+       openvswitch-common openvswitch-switch wireshark tcpdump
+  - ssh_config
+#  - tau_install
+
+export:
+  - "@base"

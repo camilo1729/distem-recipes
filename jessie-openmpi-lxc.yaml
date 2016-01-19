@@ -1,0 +1,33 @@
+#==============================================================================
+# vim: softtabstop=2 shiftwidth=2 expandtab fenc=utf-8 cc=81 tw=80
+#==============================================================================
+#
+# DESCRIPTION: Debian jessie plus TAU for MPI profiling
+#
+#==============================================================================
+
+---
+extend: docker/debian8.yaml
+
+global:
+    # You can see the base template `default/chroot/debian7.yaml` to know the
+    # variables that you can override
+  mpi_path: "/usr/local/"
+  mpi_release: "1.10"
+  mpi_version: "1.10.1"
+
+
+bootstrap:
+  - "@base"
+
+setup:
+  - "@base"
+  - install_software:
+    - packages: >
+       g++ make taktuk openssh-server libc6-dev-i386
+       build-essential gfortran fort77
+  - mpi_install
+  - ssh_config
+
+export:
+  - "@base"
