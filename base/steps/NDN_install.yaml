@@ -1,0 +1,16 @@
+- install_NDN-CXX:
+  - exec_in: |
+             git clone https://github.com/named-data/ndn-cxx
+             cd NFD
+             ./waf configure
+             ./waf
+             ./waf install
+             cp /usr/local/etc/ndn/nfd.conf.sample /usr/local/etc/ndn/nfd.conf
+
+- install_NFD:
+  - exec_in: |
+             git clone 'https://github.com/named-data/ndn-tools'
+             cd ndn-tools
+             ./waf configure
+             ./waf
+             ./waf install
