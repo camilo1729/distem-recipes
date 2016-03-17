@@ -23,7 +23,7 @@ setup:
        g++ make taktuk openssh-server libc6-dev-i386
        build-essential devscripts build-essential git
        pkg-config libsqlite3-dev libcrypto++-dev libboost-all-dev
-       libpcap-dev libcap2-bin
+       libpcap-dev libcap2-bin screen
   - ssh_config
   - NDN_install
 export:
