@@ -18,8 +18,16 @@
 
 - install_NDN-tools:
   - exec_in: |
-             git clone 'https://github.com/named-data/ndn-tools'
+             git clone https://github.com/named-data/ndn-tools
              cd ndn-tools
+             ./waf configure
+             ./waf
+             ./waf install
+
+- install_NLSR:
+  - exec_in: |
+             git clone https://github.com/named-data/NLSR.git
+             cd NLSR
              ./waf configure
              ./waf
              ./waf install
