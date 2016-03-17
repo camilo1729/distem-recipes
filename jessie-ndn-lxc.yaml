@@ -24,6 +24,8 @@ setup:
        build-essential devscripts build-essential git
        pkg-config libsqlite3-dev libcrypto++-dev libboost-all-dev
        libpcap-dev libcap2-bin screen
+       liblog4cxx10-dev libprotobuf-dev protobuf-compiler
+       libssl-dev
   - ssh_config
   - NDN_install
 export:
