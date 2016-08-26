@@ -62,8 +62,8 @@ setup:
     - repository: $$apt_repository
     - enable_contrib_repo: $$apt_enable_contrib
     - enable_nonfree_repo: $$apt_enable_nonfree
-  - upgrade_system:
-    - dist_upgrade: true
+  # - upgrade_system:
+  #   - dist_upgrade: false
   - install_software:
     - packages: >
         debian-keyring $$setup_packages lxc

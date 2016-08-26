@@ -1,6 +1,12 @@
 - install_NDN-CXX:
   - exec_in: |
              git clone https://github.com/named-data/ndn-cxx
+
+  - local2in:
+      - $$kameleon_data_dir/tlv.hpp
+      - /root/kameleon_workdir/ndn-cxx/src/encoding/tlv.hpp
+
+  - exec_in: |
              cd ndn-cxx
              ./waf configure
              ./waf
@@ -8,7 +14,6 @@
 
 - install_NFD:
   - exec_in: |
-             git clone https://github.com/named-data/ndn-cxx
              git clone --recursive https://github.com/named-data/NFD
              cd NFD
              ./waf configure
